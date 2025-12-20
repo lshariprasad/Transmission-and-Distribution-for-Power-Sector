@@ -1,0 +1,39 @@
+clc;
+clear;
+
+// Given data
+V_s = 120e3:
+V_r = 110e3;
+R = 6;
+XL = 8;
+pf_r = 0.9;
+
+// Per-phase voltages
+V_s_phase = V_s / sqrt(3);
+disp("Sending End Voltage per phase (V) = " + string(V_s_phase));
+
+V_r_phase = V_r / sqrt(3);
+disp("Receiving End Voltage per phase (V) = " + string(V_r_phase));
+
+// Load phase angle
+theta_r = acos(pf_r);
+disp("Phase angle of load (rad) = " + string(theta_r));
+
+// Sine of power factor angle
+sin_theta = sin(theta_r);
+disp("Sin of power factor angle = " + string(sin_theta));
+
+// Receiving end current
+I_r = (V_s_phase - V_r_phase) / (R*pf_r + XL*sin_theta);
+disp("Receiving End Current (A) = " + string(I_r));
+
+// Receiving end power
+P_r = 3 * V_r_phase * I_r * pf_r;
+disp("Receiving End Power (W) = " + string(P_r));
+
+P_r_MW = P_r / 1e6;
+disp("Receiving End Power (MW) = " + string(P_r_MW));
+
+// Sending end power factor
+pf_s = ((V_r_phase * pf_r) + (I_r * R)) / V_s_phase;
+disp("Sending End Power Factor = " + string(pf_s));
