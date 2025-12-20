@@ -1,0 +1,44 @@
+clc;
+clear;
+
+// Given data
+VA = 300;
+R_per_km = 0.01 * 2;
+
+length_AC = 500;
+length_CD = 500;
+length_DE = 600;
+length_EB = 400;
+
+// Resistance of each section
+R_AC = R_per_km * length_AC / 1000;
+R_CD = R_per_km * length_CD / 1000;
+R_DE = R_per_km * length_DE / 1000;
+R_EB = R_per_km * length_EB / 1000;
+
+disp("Section AC Resistance = " + string(R_AC) + " ohms");
+disp("Section CD Resistance = " + string(R_CD) + " ohms");
+disp("Section DE Resistance = " + string(R_DE) + " ohms");
+disp("Section EB Resistance = " + string(R_EB) + " ohms");
+
+// Current in each section
+I_EB = 50;
+I_DE = 50 + 200;
+I_CD = I_DE + 150;
+I_AC = I_CD + 100;
+
+disp("Section EB Current = " + string(I_EB) + " A");
+disp("Section DE Current = " + string(I_DE) + " A");
+disp("Section CD Current = " + string(I_CD) + " A");
+disp("Section AC Current = " + string(I_AC) + " A");
+
+// Voltage at each load point
+VC = VA - (I_AC * R_AC);
+VD = VC - (I_CD * R_CD);
+VE = VD - (I_DE * R_DE);
+VB = VE - (I_EB * R_EB);
+
+disp("P.D at load point C (VC) = " + string(VC) + " V");
+disp("P.D at load point D (VD) = " + string(VD) + " V");
+disp("P.D at load point E (VE) = " + string(VE) + " V");
+disp("P.D at load point B (VB) = " + string(VB) + " V");
