@@ -1,0 +1,33 @@
+clc;
+clear;
+
+d = 2;
+d1 = 3.1;
+d2 = 4.2;
+D = 5.3;
+
+// Phase voltage
+V_phase = 66 * sqrt(2) / sqrt(3);
+
+// Maximum stress factors
+g1_max_factor = 2.28;
+g2_max_factor = 2.12;
+g3_max_factor = 2.04;
+
+// Voltage ratios
+V1_ratio = g1_max_factor / g2_max_factor;
+V2_ratio = g1_max_factor / g3_max_factor;
+
+// Voltage distribution
+V = V_phase;
+V1 = V / (1 + V1_ratio + V2_ratio);
+V2 = V1 * V1_ratio;
+V3 = V1 * V2_ratio;
+
+// Intersheath voltages
+Voltage_first_intersheath = V - V1;
+Voltage_second_intersheath = V - V1 - V2;
+
+// Display results (YOUR FORMAT)
+disp("Voltage on first intersheath = " + string(Voltage_first_intersheath));
+disp("Voltage on second intersheath = " + string(Voltage_second_intersheath));
