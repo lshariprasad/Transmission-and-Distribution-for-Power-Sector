@@ -1,0 +1,45 @@
+clc;
+clear;
+
+// Line parameters
+R = 0.1 * 150;          // ohms
+X = 0.5 * 150;          // ohms
+Y = 3e-6 * 150;         // mho
+
+// Receiving end data
+Vr = 110e3 / sqrt(3);   // phase voltage (V)
+Pr = 50e6;              // total power (W)
+pf = 0.8;
+
+// Receiving end current
+Ir_mag = Pr / (3 * Vr * pf);
+phi_r = acos(pf);
+
+// Receiving end current phasor
+Ir = Ir_mag * (cos(-phi_r) + %i * sin(-phi_r));
+
+// Charging current at receiving end
+Ic1 = %i * (Y / 2) * Vr;
+
+// Line current
+Il = Ir + Ic1;
+
+// Line impedance
+Z = R + %i * X;
+
+// Sending end phase voltage
+Vs = Vr + Il * Z;
+Vs_line = abs(Vs) * sqrt(3);
+
+// Charging current at sending end
+Ic2 = %i * (Y / 2) * Vs;
+
+// Sending end current
+Is = Il + Ic2;
+
+// Display results (YOUR REQUIRED FORMAT)
+disp("Phase Sending End Voltage (V) = " + string(abs(Vs)));
+disp("Line-to-Line Sending End Voltage (V) = " + string(Vs_line));
+disp("Magnitude of Receiving End Current (A) = " + string(abs(Ir)));
+disp("Magnitude of Line Current (A) = " + string(abs(Il)));
+disp("Magnitude of Sending End Current (A) = " + string(abs(Is)));
