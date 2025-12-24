@@ -2,14 +2,10 @@ clc;
 clear;
 
 L = input("Enter span length (m) = ");
-Tu = input("Enter ultimate strength = ");
-FOS = input("Enter factor of safety = ");
-
-// Working tension
-T = Tu / FOS;
+T = input("Enter tension (kg) = ");
 
 // Weight range
-W = 0.68:0.02:0.9;
+W = 0.75:0.05:1;
 
 // Sag calculation
 S = (W .* L^2) / (8 * T);
