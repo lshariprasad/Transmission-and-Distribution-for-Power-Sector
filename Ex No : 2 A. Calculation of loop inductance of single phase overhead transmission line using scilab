@@ -1,0 +1,11 @@
+clc;
+clear;
+
+d = input('Enter the spacing between conductors in meters: ');
+dia = input('Enter the diameter of the conductor in meters: ');
+r = dia / 2;
+l = input('Enter the length of the line in km: ');
+
+// Loop inductance per km
+li = 1e-7 * (1 + 4 * log(d / r)) * 1000;
+disp(li, 'The loop inductance for the given transmission line (H/km) =');
