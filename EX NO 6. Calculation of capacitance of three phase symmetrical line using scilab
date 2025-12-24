@@ -1,0 +1,13 @@
+clc;
+clear;
+
+d = input('Enter the spacing between conductors in centimeter: ');
+r = input('Enter the radius of the conductor in centimeter: ');
+
+// Capacitance per conductor per meter
+Cl = %pi * 2 * 8.854e-12 / log(d / r);
+disp(Cl, 'The capacitance of each conductor in a 3-phase transmission line (F/m) = ');
+
+// Capacitance per kilometer
+Cl_km = Cl * 1000;
+disp(Cl_km, 'The capacitance of each conductor in a 3-phase transmission line (F/km) = ');
