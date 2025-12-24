@@ -1,0 +1,33 @@
+clc;
+clear;
+
+// Inputs
+L  = input("Span length (m) = ");
+d  = input("Diameter of conductor (cm) = ");
+W  = input("Weight of conductor (kg/m) = ");
+Tu = input("Ultimate strength (kg) = ");
+t  = input("Radial thickness of ice (cm) = ");
+p  = input("Wind pressure (kg/m^2) = ");
+
+// Working tension
+T = Tu / 2;
+
+// Volume of ice per meter (cm^3)
+V = %pi * t * (d + t) * 100;
+disp("Volume of ice per metre (cm^3) = " + string(V));
+
+// Weight of ice per meter (kg)
+Wi = 0.91 * V;
+disp("Weight of ice per metre (kg) = " + string(Wi));
+
+// Wind force per meter (kg)
+Ww = p * ((d + 2*t) * 100);
+disp("Wind force per metre (kg) = " + string(Ww));
+
+// Resultant weight
+Wt = sqrt((W + (Wi / 1000))^2 + (Ww / 1000)^2);
+disp("Total weight of the conductor (kg/m) = " + string(Wt));
+
+// Sag calculation
+S = (Wt * L^2) / (8 * T);
+disp("Sag (m) = " + string(S));
