@@ -1,0 +1,35 @@
+clc;
+clear;
+
+// Inputs
+L = input("Span length = ");
+W = input("Weight (kg/m) = ");
+h = input("Height = ");
+T = input("Tension = ");
+
+// Solving simultaneous equations
+A = [1 1; -1 1];
+B = [500; 256];
+
+x = A \ B;
+x1 = x(1);
+x2 = x(2);
+
+disp("x1 = " + string(x1));
+disp("x2 = " + string(x2));
+
+// Sag at lowest point O
+S = (W * x1^2) / (2 * T);
+Clr1 = 30 - S;
+
+disp("Clearance of lowest point O from water level = " + string(Clr1));
+
+// Sag at midpoint P
+mid = 250 - x1;
+Smid = (W * mid^2) / (2 * T);
+
+disp("Sag at midpoint P = " + string(Smid));
+
+// Clearance at midpoint
+Clr2 = Clr1 + Smid;
+disp("Clearance of midpoint P from water level = " + string(Clr2));
