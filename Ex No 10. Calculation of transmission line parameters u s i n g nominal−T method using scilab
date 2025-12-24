@@ -1,0 +1,63 @@
+clc;
+clear;
+
+// Given data
+R_km_phase = 0.1;          // ohm/km/phase
+Xl_km_phase = 0.2;         // ohm/km/phase
+B_km_phase = 0.04e-4;      // mho/km/phase
+L = 100;                   // line length (km)
+
+VR_line = 66000;           // Receiving end line voltage (V)
+VR_phase = VR_line / sqrt(3);
+disp("Receiving end voltage per phase (V) = " + string(VR_phase));
+
+S_load = 10000 * 1e3;      // Load power (W)
+pf_load = 0.8;
+theta_R = acos(pf_load);
+
+// Line parameters
+R = R_km_phase * L;
+XL = Xl_km_phase * L;
+Y = %i * B_km_phase * L;
+
+disp("Total Resistance (ohm) = " + string(R));
+disp("Total Reactance (ohm) = " + string(XL));
+disp("Total Susceptance (mho) = " + string(Y));
+
+// Receiving end current magnitude
+IR = S_load / (sqrt(3) * VR_line * pf_load);
+disp("Receiving end current magnitude (A) = " + string(IR));
+
+// Impedance
+Z = R + %i * XL;
+
+// Receiving end current phasor
+IR_angle = -theta_R;
+IR_phasor = IR * exp(%i * IR_angle);
+disp("Receiving end current (complex) = " + string(IR_phasor));
+
+// Mid-point voltage
+VC = VR_phase + IR_phasor * (Z / 2);
+
+// Charging current
+IC = Y * VC;
+
+// Sending end current
+IS = IR_phasor + IC;
+disp("Sending end current IS (A) = " + string(abs(IS)));
+
+// Sending end voltage
+VS = VC + IS * (Z / 2);
+disp("Sending end voltage VS (kV) = " + string(abs(VS) / 1000));
+
+// Sending end power factor
+theta_S = atan(imag(IS) / real(IS));
+pf_S = cos(theta_S);
+disp("Sending end power factor = " + string(pf_S));
+
+// Power & efficiency
+P_sending = 3 * abs(VS) * abs(IS) * pf_S;
+P_received = S_load;
+
+efficiency = (P_received / P_sending) * 100;
+disp("Transmission efficiency (%) = " + string(efficiency));
