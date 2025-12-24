@@ -2,7 +2,7 @@ clc;
 clear;
 
 // Given data
-V_s = 120e3:
+V_s = 120e3;
 V_r = 110e3;
 R = 6;
 XL = 8;
@@ -24,13 +24,14 @@ sin_theta = sin(theta_r);
 disp("Sin of power factor angle = " + string(sin_theta));
 
 // Receiving end current
-I_r = (V_s_phase - V_r_phase) / (R*pf_r + XL*sin_theta);
+I_r = (V_s_phase - V_r_phase) / (R * pf_r + XL * sin_theta);
 disp("Receiving End Current (A) = " + string(I_r));
 
 // Receiving end power
 P_r = 3 * V_r_phase * I_r * pf_r;
 disp("Receiving End Power (W) = " + string(P_r));
 
+// Power in MW
 P_r_MW = P_r / 1e6;
 disp("Receiving End Power (MW) = " + string(P_r_MW));
 
