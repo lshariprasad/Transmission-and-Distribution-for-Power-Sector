@@ -1,0 +1,31 @@
+clc;
+clear;
+
+d1  = input('Enter the spacing between conductors in meters D1 = ');
+d2  = input('Enter the spacing between conductors in meters D2 = ');
+d3  = input('Enter the spacing between conductors in meters D3 = ');
+dia = input('Enter the diameter of the conductor in meters = ');
+Vline = input('Enter the line voltage in kilovolts = ');
+f   = input('Enter the frequency in Hz = ');
+
+// Equivalent spacing
+deq = (d1 * d2 * d3)^(1/3);
+
+// Radius
+r = dia / 2;
+
+// Line-to-neutral capacitance per meter
+NC = %pi * 2 * 8.854e-12 / log(deq / r);
+disp(NC, 'The line-to-neutral capacitance (F/m) = ');
+
+// Capacitance per km
+NC_km = NC * 1000;
+disp(NC_km, 'The line-to-neutral capacitance (F/km) = ');
+
+// Capacitance for 100 km line
+NC_100km = NC_km * 100;
+disp(NC_100km, 'The line-to-neutral capacitance for 100 km line (F) = ');
+
+// Charging current per phase
+Ic = ((Vline * 1000) / 1.732) * 2 * %pi * f * NC;
+disp(Ic, 'The charging current per phase (A) = ');
