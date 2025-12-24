@@ -1,0 +1,26 @@
+clc;
+clear;
+
+V1 = 8;     // Voltage across first disc (kV)
+V2 = 11;    // Voltage across second disc (kV)
+n = 3;      // Number of discs
+
+// Ratio of capacitances
+k = (V2 / V1) - 1;
+
+// Voltage across third disc
+V3 = V2 + (V1 + V2) * k;
+
+// Total voltage across string
+V_total = V1 + V2 + V3;
+
+// Line voltage
+V_line = 1.732 * V_total;
+
+// String efficiency
+string_efficiency = (V_total / (n * V3)) * 100;
+
+// Display results (your required format)
+disp("Ratio of capacitance C0/C = " + string(k));
+disp("Line Voltage (kV) = " + string(V_line));
+disp("String Efficiency (%) = " + string(string_efficiency));
