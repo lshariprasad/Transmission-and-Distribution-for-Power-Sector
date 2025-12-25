@@ -1,20 +1,20 @@
 clc;
 clear;
 
-l = input('Enter the length of the line in km: ');
-d = input('Enter the distance between conductors in meters: ');
-dia = input('Enter the diameter of each conductor in meters: ');
+l = input("Enter the length of the line in km = ");
+d = input("Enter the distance between conductors in meters = ");
+dia = input("Enter the diameter of each conductor in meters = ");
 
 r = dia / 2;
 
 // Loop inductance per meter
 li = 4e-7 * log(d / (0.7788 * r));
-disp(li, 'The loop inductance per meter (H/m) =');
+disp("The loop inductance per meter (H/m) = " + string(li));
 
 // Loop inductance per km
 likm = li * 1000;
-disp(likm, 'The loop inductance per km (H/km) =');
+disp("The loop inductance per km (H/km) = " + string(likm));
 
 // Total loop inductance of the line
 l_total = likm * l;
-disp(l_total, 'The total loop inductance of the line (H) =');
+disp("The total loop inductance of the line (H) = " + string(l_total));
