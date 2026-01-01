@@ -1,0 +1,11 @@
+clc; 
+clear; 
+// Capacitance per meter 
+C_per_m = %pi * epsilon0 / log(d / r); 
+disp("Capacitance per meter (F/m) = " + string(C_per_m)); 
+// Capacitance per kilometer 
+C_per_km = C_per_m * 1000; 
+disp("Capacitance per kilometer (F/km) = " + string(C_per_km)); 
+// Total capacitance for 30 km line 
+C_total = C_per_km * length_km; 
+disp("Total capacitance of the 30 km line (F) = " + string(C_total));
