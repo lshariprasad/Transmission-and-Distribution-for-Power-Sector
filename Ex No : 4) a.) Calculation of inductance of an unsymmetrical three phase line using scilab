@@ -1,0 +1,13 @@
+clc; 
+clear; 
+D = 2; 
+dia = 1.24e-2; 
+r = dia / 2; 
+Deq = D; 
+// spacing in meters (equilateral triangle) 
+// diameter in meters 
+// radius in meters 
+Iphm = 1e-7 * (0.5 + 2 * log(Deq / r)); 
+disp("Inductance per phase per meter (H/m) = " + string(Iphm)); 
+Iph_km = Iphm * 1000; 
+disp("Inductance per phase per kilometer (H/km) = " + string(Iph_km));
