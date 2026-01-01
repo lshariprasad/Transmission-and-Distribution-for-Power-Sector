@@ -1,0 +1,22 @@
+clc; 
+clear; 
+// Given values 
+length_km = 100; 
+D = 2.5; 
+dia = 2e-2; 
+r = dia / 2; 
+epsilon0 = 8.854e-12; 
+// km 
+// spacing in meters 
+// diameter in meters 
+// radius in meters 
+// F/m 
+// Capacitance per conductor per meter 
+C_per_m = 2 * %pi * epsilon0 / log(D / r); 
+disp("Capacitance per conductor per meter (F/m) = " + string(C_per_m)); 
+// Capacitance per conductor per kilometer 
+C_per_km = C_per_m * 1000; 
+disp("Capacitance per conductor per kilometer (F/km) = " + string(C_per_km)); 
+// Total capacitance for 100 km 
+C_total = C_per_km * length_km; 
+disp("Total capacitance of each conductor for 100 km (F) = " + string(C_total));
