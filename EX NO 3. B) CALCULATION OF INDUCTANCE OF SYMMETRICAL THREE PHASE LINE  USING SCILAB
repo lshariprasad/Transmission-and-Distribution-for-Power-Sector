@@ -1,0 +1,10 @@
+clc; 
+clear; 
+d = input("Enter the spacing between conductors in centimeter = "); 
+r = input("Enter the radius of the conductor in centimeter = "); 
+// Inductance per meter 
+Ip = 1e-7 * (0.5 + 2 * log(d / r)); 
+disp("Inductance of 3-phase symmetrical transmission line per meter (H/m) = " + string(Ip)); 
+// Inductance per kilometer 
+Ip_km = Ip * 1000; 
+disp("Inductance per kilometer (H/km) = " + string(Ip_km));
