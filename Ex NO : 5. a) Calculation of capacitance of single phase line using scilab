@@ -1,0 +1,15 @@
+clc; 
+clear; 
+
+// Given values 
+d = 300; 
+r = 1; 
+// spacing in cm (3 m = 300 cm) 
+// radius in cm 
+epsilon0 = 8.854e-12; 
+// Capacitance per meter 
+Cl = %pi * epsilon0 / log(d / r); 
+disp("Capacitance of the single-phase line (F/m) = " + string(Cl)); 
+// Capacitance per kilometer 
+Cl_km = Cl * 1000; 
+disp("Capacitance of the single-phase line (F/km) = " + string(Cl_km));
