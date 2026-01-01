@@ -1,0 +1,14 @@
+clc; 
+clear; 
+// Given values 
+d = 200; 
+r = 1.25 / 2; 
+// spacing in cm (2 m = 200 cm) 
+// radius in cm 
+epsilon0 = 8.854e-12;  // F/m 
+// Capacitance per conductor per meter 
+Cl = %pi * 2 * epsilon0 / log(d / r); 
+disp("Capacitance of each conductor per meter (F/m) = " + string(Cl)); 
+// Capacitance per kilometer 
+Cl_km = Cl * 1000; 
+disp("Capacitance of each conductor per kilometer (F/km) = " + string(Cl_km));
