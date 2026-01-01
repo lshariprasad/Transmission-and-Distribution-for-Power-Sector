@@ -1,0 +1,44 @@
+clc; 
+clear; 
+// 
+// Given data 
+// 
+d1 = 2; 
+d2 = 2; 
+d3 = 4; 
+dia = 1.25e-2; 
+r = dia / 2; 
+Vline = 66; 
+f = 50; 
+length_km = 100; 
+// spacing D12 in meters 
+// spacing D23 in meters 
+// spacing D31 in meters 
+// diameter in meters 
+// radius in meters 
+// kV 
+// Hz 
+epsilon0 = 8.854e-12; 
+// 
+// km 
+// F/m 
+// Equivalent spacing (for transposed line) 
+// 
+Deq = (d1 * d2 * d3)^(1/3); 
+// 
+// Capacitance per phase per meter 
+// 
+C_per_m = 2 * %pi * epsilon0 / log(Deq / r); 
+disp("Capacitance per phase per meter (F/m) = " + string(C_per_m)); 
+// Capacitance per phase per km 
+C_per_km = C_per_m * 1000; 
+disp("Capacitance per phase per km (F/km) = " + string(C_per_km)); 
+// Capacitance per phase for 100 km 
+C_100km = C_per_km * length_km; 
+disp("Capacitance per phase for 100 km (F) = " + string(C_100km)); 
+// 
+// Charging current per phase 
+// 
+V_phase = (Vline * 1000) / sqrt(3); 
+Ic = 2 * %pi * f * C_100km * V_phase; 
+disp("Charging current per phase (A) = " + string(Ic));
